@@ -97,7 +97,7 @@ typedef enum _sai_dash_ha_attr_t
      * @flags CREATE_AND_SET
      * @default 100
      */
-    SAI_DASH_HA_ATTR_VIP_CONVERGENCE_TIMEOUT,
+    SAI_DASH_HA_ATTR_SWITCHOVER_CONVERGENCE_TIMEOUT,
 
     /**
      * @brief List of HA VIP status
@@ -106,6 +106,52 @@ typedef enum _sai_dash_ha_attr_t
      * @flags READ_ONLY
      */
     SAI_DASH_HA_ATTR_VIP_STATUS_LIST,
+
+    /**
+     * @brief Trigger to kick-start the HA finite state machine after HA configuration
+     *        has been pushed
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_DASH_HA_ATTR_START_FSM,
+
+    /**
+     * @brief Trigger to shutdown the HA finite state machine to take out a DPU from HA pairing
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_DASH_HA_ATTR_STOP_FSM,
+
+    /**
+     * @brief Trigger to activate the HA admin role
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_DASH_HA_ATTR_ACTIVATE_ADMIN_ROLE,
+
+    /**
+     * @brief Trigger to initiate controlled switchover to the HA peer
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_DASH_HA_ATTR_INITIATE_SWITCHOVER,
+
+    /**
+     * @brief Trigger to reconcile synced flows with current local configuration
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_DASH_HA_ATTR_FLOW_RECONCILE,
 
     /**
      * @brief End of attributes
@@ -271,85 +317,6 @@ typedef sai_status_t (*sai_get_dash_ha_attribute_fn)(
         _Inout_ sai_attribute_t *attr_list);
 
 /**
- * @brief Kick-start the HA finite state machine after HA configuration
- *        has been pushed
- *
- * @param[in] ha_entry Entry
- * @param[in] attr_count Number of attributes
- * @param[in] attr_list Array of attributes
- *
- * @return #SAI_STATUS_SUCCESS on success Failure status code on error
- * #SAI_STATUS_OBJECT_IN_USE will be returned if this operation could
- * cause traffic disruption. Retry with Force attribute set to go
- * ahead with start.
- */
-typedef sai_status_t (*sai_start_dash_ha_fsm_fn)(
-        _In_ const sai_dash_ha_fsm_entry_t *ha_entry,
-        _In_ uint32_t attr_count,
-        _In_ const sai_attribute_t *attr_list);
-
-/**
- * @brief Shutdown the HA finite state machine to take out a DPU from HA pairing
- *
- * @param[in] ha_entry Entry
- * @param[in] attr_count Number of attributes
- * @param[in] attr_list Array of attributes
- *
- * @return #SAI_STATUS_SUCCESS on success Failure status code on error
- * #SAI_STATUS_OBJECT_IN_USE will be returned if its not in a safe state
- * for shutdown. Retry with Force attribute set to go ahead with stop.
- */
-typedef sai_status_t (*sai_stop_dash_ha_fsm_fn)(
-        _In_ const sai_dash_ha_fsm_entry_t *ha_entry,
-        _In_ uint32_t attr_count,
-        _In_ const sai_attribute_t *attr_list);
-
-/**
- * @brief Activate the HA admin role
- *
- * @param[in] ha_entry Entry
- * @param[in] attr_count Number of attributes
- * @param[in] attr_list Array of attributes
- *
- * @return #SAI_STATUS_SUCCESS on success Failure status code on error
- */
-typedef sai_status_t (*sai_activate_admin_role_dash_ha_fsm_fn)(
-        _In_ const sai_dash_ha_fsm_entry_t *ha_entry,
-        _In_ uint32_t attr_count,
-        _In_ const sai_attribute_t *attr_list);
-
-/**
- * @brief Initiate controlled switchover to the HA peer
- *
- * @param[in] ha_entry Entry
- * @param[in] attr_count Number of attributes
- * @param[in] attr_list Array of attributes
- *
- * @return #SAI_STATUS_SUCCESS on success Failure status code on error
- * #SAI_STATUS_OBJECT_IN_USE will be returned if this operation could
- * cause traffic disruption. Retry with Force attribute set to go
- * ahead with switchover.
- */
-typedef sai_status_t (*sai_initiate_switchover_dash_ha_fsm_fn)(
-        _In_ const sai_dash_ha_fsm_entry_t *ha_entry,
-        _In_ uint32_t attr_count,
-        _In_ const sai_attribute_t *attr_list);
-
-/**
- * @brief Reconcile synced flows with current local configuration
- *
- * @param[in] ha_entry Entry
- * @param[in] attr_count Number of attributes
- * @param[in] attr_list Array of attributes
- *
- * @return #SAI_STATUS_SUCCESS on success Failure status code on error
- */
-typedef sai_status_t (*sai_flow_reconcile_dash_ha_fsm_fn)(
-        _In_ const sai_dash_ha_fsm_entry_t *ha_entry,
-        _In_ uint32_t attr_count,
-        _In_ const sai_attribute_t *attr_list);
-
-/**
  * @brief Get DASH HA statistics counters.
  *
  * @param[in] dash_ha_id HA object id
@@ -429,11 +396,6 @@ typedef struct _sai_dash_ha_api_t
     sai_get_dash_ha_stats_ext_fn               get_dash_ha_stats_ext;
     sai_clear_dash_ha_stats_fn                 clear_dash_ha_stats;
     sai_clear_dash_ha_all_stats_fn             clear_dash_ha_all_stats;
-    sai_start_dash_ha_fsm_fn                   start_dash_ha_fsm;
-    sai_stop_dash_ha_fsm_fn                    stop_dash_ha_fsm;
-    sai_activate_admin_role_dash_ha_fsm_fn     activate_admin_role_dash_ha_fsm;
-    sai_initiate_switchover_dash_ha_fsm_fn     initiate_switchover_dash_ha_fsm;
-    sai_flow_reconcile_dash_ha_fsm_fn          flow_reconcile_dash_ha_fsm;
 } sai_dash_ha_api_t;
 
 /**
