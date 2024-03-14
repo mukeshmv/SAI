@@ -366,6 +366,8 @@ sub ProcessTagDefault
 
     return $val if $val =~ /^ffff\:ffff\:ffff\:ffff\:ffff\:ffff\:ffff\:ffff$/;
 
+    return $val if $val =~ /^0\:0\:0\:0\:0\:0\:0\:0$/;
+
     LogError "invalid default tag value '$val' on $type $value";
     return undef;
 }
@@ -1652,6 +1654,8 @@ sub ProcessDefaultValueType
 
     return "SAI_DEFAULT_VALUE_TYPE_CONST" if $default =~ /^ffff\:ffff\:ffff\:ffff\:ffff\:ffff\:ffff\:ffff$/;
 
+    return "SAI_DEFAULT_VALUE_TYPE_CONST" if $default =~ /^0\:0\:0\:0\:0\:0\:0\:0$/;
+
     LogError "invalid default value type '$default' on $attr";
 
     return "";
@@ -1726,6 +1730,10 @@ sub ProcessDefaultValue
     elsif ($default =~ /^0\:0\:0\:0\:0\:0$/ and $type =~ /^(sai_mac_t)/)
     {
         WriteSource "$val = { .mac = { 0, 0, 0, 0, 0, 0 } };";
+    }
+    elsif ($default =~ /^0\:0\:0\:0\:0\:0\:0\:0$/ and $type =~ /^sai_ip6_t/)
+    {
+        WriteSource "$val = { .ip6 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0} };";
     }
     else
     {
