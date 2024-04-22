@@ -470,6 +470,15 @@ typedef enum _sai_eni_attr_t
     SAI_ENI_ATTR_DISABLE_FAST_PATH_ICMP_FLOW_REDIRECTION,
 
     /**
+     * @brief Action set_eni_attrs parameter IS_HA_FLOW_OWNER
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_ENI_ATTR_IS_HA_FLOW_OWNER,
+
+    /**
      * @brief End of attributes
      */
     SAI_ENI_ATTR_END,
