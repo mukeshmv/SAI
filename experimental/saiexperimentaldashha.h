@@ -118,6 +118,15 @@ typedef enum _sai_ha_set_attr_t
     SAI_HA_SET_ATTR_DP_CHANNEL_IS_ALIVE,
 
     /**
+     * @brief Action set_ha_set_attr parameter SWITCHOVER_CONVERGENCE_TIMEOUT_MS
+     *
+     * @type sai_uint32_t
+     * @flags CREATE_AND_SET
+     * @default 0
+     */
+    SAI_HA_SET_ATTR_SWITCHOVER_CONVERGENCE_TIMEOUT_MS,
+
+    /**
      * @brief End of attributes
      */
     SAI_HA_SET_ATTR_END,
@@ -200,6 +209,41 @@ typedef enum _sai_ha_scope_attr_t
      * @flags READ_ONLY
      */
     SAI_HA_SCOPE_ATTR_FLOW_VERSION,
+
+    /**
+     * @brief Action set_ha_scope_attr parameter VIP_V4
+     *
+     * @type sai_ip4_t
+     * @flags CREATE_AND_SET
+     * @default 0.0.0.0
+     */
+    SAI_HA_SCOPE_ATTR_VIP_V4,
+
+    /**
+     * @brief Action set_ha_scope_attr parameter ADMIN_STATE
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_HA_SCOPE_ATTR_ADMIN_STATE,
+
+    /**
+     * @brief Action set_ha_scope_attr parameter DASH_HA_STATE
+     *
+     * @type sai_dash_ha_state_t
+     * @flags READ_ONLY
+     */
+    SAI_HA_SCOPE_ATTR_DASH_HA_STATE,
+
+    /**
+     * @brief Action set_ha_scope_attr parameter ACTIVATE_ROLE
+     *
+     * @type bool
+     * @flags CREATE_AND_SET
+     * @default false
+     */
+    SAI_HA_SCOPE_ATTR_ACTIVATE_ROLE,
 
     /**
      * @brief End of attributes
