@@ -686,6 +686,15 @@ sub ProcessEnumSection
                     $last =  pop @values;
                     LogInfo "Removing last element $last";
                 }
+                my $last = $values[$#values-1];
+
+                if ($last eq "${enumprefix}MAX")
+                {
+                    my $before_last =  pop @values;
+                    $last =  pop @values;
+                    push @values, $before_last;
+                    LogInfo "Removing last element $last, pushing back $before_last";
+                }
             }
         }
         else

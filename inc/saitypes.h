@@ -295,12 +295,13 @@ typedef enum _sai_object_type_t
     SAI_OBJECT_TYPE_ACL_TABLE_CHAIN_GROUP    = 105,
     SAI_OBJECT_TYPE_TWAMP_SESSION            = 106,
     SAI_OBJECT_TYPE_TAM_COUNTER_SUBSCRIPTION = 107,
-    SAI_OBJECT_TYPE_POE_DEVICE               = 108,
-    SAI_OBJECT_TYPE_POE_PSE                  = 109,
-    SAI_OBJECT_TYPE_POE_PORT                 = 110,
 
     /** Must remain in last position */
     SAI_OBJECT_TYPE_MAX,
+
+    SAI_OBJECT_TYPE_POE_DEVICE               = 201,
+    SAI_OBJECT_TYPE_POE_PSE                  = 202,
+    SAI_OBJECT_TYPE_POE_PORT                 = 203,
 
     /** Custom range base value */
     SAI_OBJECT_TYPE_CUSTOM_RANGE_START = 256,
