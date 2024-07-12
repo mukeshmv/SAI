@@ -90,6 +90,9 @@ typedef enum _sai_ha_scope_event_t
 
     /** Flow reconcile is needed */
     SAI_HA_SCOPE_EVENT_FLOW_RECONCILE_NEEDED,
+
+    /** DPU driven HA split brain detected */
+    SAI_HA_SCOPE_EVENT_SPLIT_BRAIN_DETECTED,
 } sai_ha_scope_event_t;
 
 /**
