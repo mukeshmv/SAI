@@ -70,6 +70,12 @@ typedef enum _sai_object_type_extensions_t
 
     SAI_OBJECT_TYPE_VIP_ENTRY,
 
+    SAI_OBJECT_TYPE_HA_SET,
+
+    SAI_OBJECT_TYPE_HA_SCOPE,
+
+    SAI_OBJECT_TYPE_DASH_TUNNEL,
+
     /* Add new experimental object types above this line */
 
     SAI_OBJECT_TYPE_EXTENSIONS_RANGE_END
@@ -95,6 +101,80 @@ typedef enum _sai_dash_encapsulation_t
     SAI_DASH_ENCAPSULATION_NVGRE,
 
 } sai_dash_encapsulation_t;
+
+typedef enum _sai_dash_tunnel_dscp_mode_t
+{
+    SAI_DASH_TUNNEL_DSCP_MODE_PRESERVE_MODEL,
+
+    SAI_DASH_TUNNEL_DSCP_MODE_PIPE_MODEL,
+
+} sai_dash_tunnel_dscp_mode_t;
+
+/**
+ * @brief Defines a list of enums for dash_routing_actions
+ *
+ * @flags strict
+ */
+typedef enum _sai_dash_routing_actions_t
+{
+    SAI_DASH_ROUTING_ACTIONS_STATIC_ENCAP = 1,
+
+    SAI_DASH_ROUTING_ACTIONS_NAT = 2,
+
+    SAI_DASH_ROUTING_ACTIONS_NAT46 = 4,
+
+    SAI_DASH_ROUTING_ACTIONS_NAT64 = 8,
+
+    SAI_DASH_ROUTING_ACTIONS_NAT_PORT = 16,
+
+} sai_dash_routing_actions_t;
+
+typedef enum _sai_dash_ha_role_t
+{
+    SAI_DASH_HA_ROLE_DEAD,
+
+    SAI_DASH_HA_ROLE_ACTIVE,
+
+    SAI_DASH_HA_ROLE_STANDBY,
+
+    SAI_DASH_HA_ROLE_STANDALONE,
+
+    SAI_DASH_HA_ROLE_SWITCHING_TO_ACTIVE,
+
+} sai_dash_ha_role_t;
+
+/**
+ * @brief Defines a list of enums for dash_ha_state
+ */
+typedef enum _sai_dash_ha_state_t
+{
+    SAI_DASH_HA_STATE_DEAD,
+
+    SAI_DASH_HA_STATE_CONNECTING,
+
+    SAI_DASH_HA_STATE_CONNECTED,
+
+    SAI_DASH_HA_STATE_INITIALIZING_TO_ACTIVE,
+
+    SAI_DASH_HA_STATE_INITIALIZING_TO_STANDBY,
+
+    SAI_DASH_HA_STATE_PENDING_STANDALONE_ACTIVATION,
+
+    SAI_DASH_HA_STATE_PENDING_ACTIVE_ACTIVATION,
+
+    SAI_DASH_HA_STATE_PENDING_STANDBY_ACTIVATION,
+
+    SAI_DASH_HA_STATE_STANDALONE,
+
+    SAI_DASH_HA_STATE_ACTIVE,
+
+    SAI_DASH_HA_STATE_STANDBY,
+
+    SAI_DASH_HA_STATE_DESTROYING,
+
+    SAI_DASH_HA_STATE_SWITCHING_TO_STANDALONE,
+
+} sai_dash_ha_state_t;
 
 #endif /* __SAITYPESEXTENSIONS_H_ */
 

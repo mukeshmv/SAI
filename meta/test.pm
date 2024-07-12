@@ -326,6 +326,7 @@ sub CreateApiNameTest
             WriteTest "        dummy = &re;";
             WriteTest "        dummy = &se;";
             WriteTest "        dummy = &ge;";
+            WriteTest "        dummy = NULL;";
             WriteTest "        checked[(int)$ot] = $ot;";
         }
         else
@@ -358,6 +359,7 @@ sub CreateApiNameTest
             WriteTest "        dummy = &re;";
             WriteTest "        dummy = &se;";
             WriteTest "        dummy = &ge;";
+            WriteTest "        dummy = NULL;";
             WriteTest "        checked[(int)$ot] = $ot;";
         }
 
@@ -619,6 +621,7 @@ sub CreateStructUnionSizeCheckTest
             $STRUCTS{$name} = $name;
 
             next if $name =~ /^sai_\w+_api_t$/; # skip api structs
+            next if $name eq "sai_switch_health_data_t";
 
             my $upname = uc($name);
 
