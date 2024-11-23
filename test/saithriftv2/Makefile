@@ -14,6 +14,7 @@ SAI_HEADERS = $(SAI_HEADER_DIR)/sai*.h
 LDFLAGS = -L$(SAI_LIBRARY_DIR) -Wl,-rpath=$(SAI_LIBRARY_DIR)
 CPPFLAGS = -I$(SAI_HEADER_DIR) -I. -std=c++11 -O0 -ggdb
 
+
 # specify add'l libraries along with libsai
 SAIRPC_EXTRA_LIBS?=
 
@@ -40,7 +41,7 @@ endif
 ifeq ($(platform),vs)
 LIBS = -lthrift -lpthread -lsaivs -lsaimeta -lsaimetadata -lzmq
 else
-LIBS = -lthrift -lpthread -lsai -lsaimetadata
+LIBS = -lthrift-0.14.1 -lpthread -lsai
 endif
 
 

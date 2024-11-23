@@ -34,6 +34,8 @@ GEN_SAIRPC_OPTS?=
 # Passed to meta/Makefile via "make saithrift-build, can specify add'l libraries along with libsai
 SAIRPC_EXTRA_LIBS?=
 
+SAI_HEADER_DIR=/usr/include/sai
+
 .PHONY: test doc clean
 
 doc: meta/xml
@@ -46,9 +48,14 @@ test:
 	make -C test
 
 saithrift-build:
+	sudo mkdir -p $(SAI_HEADER_DIR)
+	sudo cp -r inc/* $(SAI_HEADER_DIR)/
+	sudo cp -r experimental/* $(SAI_HEADER_DIR)/
+	#SAIRPC_EXTRA_LIBS="$(SAIRPC_EXTRA_LIBS)" GEN_SAIRPC_OPTS="$(GEN_SAIRPC_OPTS)" SAI_HEADER_DIR="$(SAI_HEADER_DIR)" make -C $(SAITHRIFT_PATH)
 	SAIRPC_EXTRA_LIBS="$(SAIRPC_EXTRA_LIBS)" GEN_SAIRPC_OPTS="$(GEN_SAIRPC_OPTS)" make -C $(SAITHRIFT_PATH)
 
 saithrift-install: saithrift-build
+	#make SAI_HEADER_DIR="$(SAI_HEADER_DIR)" -C $(SAITHRIFT_PATH) install
 	make -C $(SAITHRIFT_PATH) install
 
 clean:
