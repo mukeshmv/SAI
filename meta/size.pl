@@ -87,6 +87,11 @@ sub ConstructSource
     {
         my $upname = uc($struct);
 
+        # skip this union, since it contain experimental entries
+        # and it can be modified time to time
+        next if $upname =~ /SAI_OBJECT_KEY_ENTRY_T/;
+        next if $upname =~ /SAI_OBJECT_KEY_T/;
+
         $source .= "printf(\"#define ${upname}_SIZE (%zu)\\n\", sizeof($struct));\n";
     }
 

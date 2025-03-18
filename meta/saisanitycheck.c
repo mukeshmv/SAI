@@ -5932,7 +5932,6 @@ void check_struct_and_union_size()
     CHECK_STRUCT_SIZE(sai_acl_field_data_mask_t, 16);
     CHECK_STRUCT_SIZE(sai_attribute_value_t, 40);
     CHECK_STRUCT_SIZE(sai_ip_addr_t, 16);
-    CHECK_STRUCT_SIZE(sai_object_key_entry_t, 64);
     CHECK_STRUCT_SIZE(sai_tlv_entry_t, 36);
 
     /* structs */
@@ -5971,7 +5970,6 @@ void check_struct_and_union_size()
     CHECK_STRUCT_SIZE(sai_nat_entry_t, 56);
     CHECK_STRUCT_SIZE(sai_nat_event_notification_data_t, 64);
     CHECK_STRUCT_SIZE(sai_neighbor_entry_t, 40);
-    CHECK_STRUCT_SIZE(sai_object_key_t, 64);
     CHECK_STRUCT_SIZE(sai_object_list_t, 16);
     CHECK_STRUCT_SIZE(sai_port_err_status_list_t, 16);
     CHECK_STRUCT_SIZE(sai_port_eye_values_list_t, 16);
